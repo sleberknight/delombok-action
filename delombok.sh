@@ -24,7 +24,7 @@ echo "Script directory: ${here}"
 pushd "$base_dir"
 echo "pwd: $(pwd)"
 echo "contents:"
-ls -al "$base_dir"
+ls -a "$base_dir"
 
 # Do we need to delombok anything?
 set +e
