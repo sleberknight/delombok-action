@@ -7,6 +7,12 @@ else
   base_dir="$1"
 fi
 
+if [ -z "$2" ]; then
+  src_dir="${base_dir}/src"
+else
+  src_dir="${base_dir}/${2}"
+fi
+
 
 # Trap all the errors and exit on undefined variable references
 set -eu
