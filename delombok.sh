@@ -18,7 +18,7 @@ echo "Using base directory: ${base_dir}"
 echo "Using source directory: ${src_dir}"
 
 
-# Get current directory (see https://stackoverflow.com/a/246128)
+# Get script directory (see https://stackoverflow.com/a/246128)
 here=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "Script directory: ${here}"
 
