@@ -23,6 +23,8 @@ echo "Script directory: ${here}"
 # Go to the base project directory
 pushd "$base_dir"
 echo "pwd: $(pwd)"
+echo "contents:"
+ls -al "$base_dir"
 
 # Do we need to delombok anything?
 set +e
