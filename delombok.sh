@@ -37,7 +37,8 @@ fi
 # Download Lombok Jar if needed
 lombokjar="${script_dir}/lombok.jar"
 if [ ! -f "$lombokjar" ]; then
-  curl "https://projectlombok.org/downloads/lombok.jar" -o "$lombokjar"
+  echo "Download Lombok Jar"
+  curl --silent "https://projectlombok.org/downloads/lombok.jar" -o "$lombokjar"
 fi
 
 
