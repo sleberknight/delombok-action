@@ -21,7 +21,7 @@ echo "Script directory: ${here}"
 
 
 # Go to the base project directory
-pushd "$base_dir"
+# pushd "$base_dir"
 echo "pwd: $(pwd)"
 echo "contents:"
 ls -a "$base_dir"
