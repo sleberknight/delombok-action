@@ -1,0 +1,15 @@
+name: 'Delombok'
+description: 'Delombok the given directory'
+inputs:
+  directory:
+    description: 'Path to the directory to delombok'
+    required: false
+    default: ${{ github.workspace }}/src
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+      echo "Action path: ${{ github.action_path }}"
+      echo "Input directory: "${{ inputs.directory }}"
+      shell: bash
