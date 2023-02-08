@@ -17,5 +17,5 @@ runs:
         echo "Action path: ${{ github.action_path }}"
         echo "Input directory: ${{ inputs.directory }}"
         echo "Start delomboking..."
-        ${{ github.action_path }}/delombok.sh "${{ inputs.directory }}"
+        ${{ github.action_path }}/delombok.sh "${{ inputs.directory }}" "${{ inputs.sourcePath }}"
       shell: bash
