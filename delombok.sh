@@ -19,8 +19,8 @@ echo "Using source directory: ${src_dir}"
 
 
 # Get script directory (see https://stackoverflow.com/a/246128)
-here=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-echo "Script directory: ${here}"
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+echo "Script directory: ${script_dir}"
 
 
 # Do we need to delombok anything?
@@ -35,7 +35,7 @@ fi
 
 
 # Download Lombok Jar if needed
-lombokjar="${here}/lombok.jar"
+lombokjar="${script_dir}/lombok.jar"
 if [ ! -f "$lombokjar" ]; then
   curl "https://projectlombok.org/downloads/lombok.jar" -o "$lombokjar"
 fi
