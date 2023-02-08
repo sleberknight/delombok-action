@@ -2,9 +2,9 @@ name: 'Delombok'
 description: 'Delombok the given directory'
 inputs:
   directory:
-    description: 'Path to the directory to delombok'
+    description: 'Path to the directory to delombok (the project workspace)'
     required: false
-    default: ${{ github.workspace }}/src
+    default: ${{ github.workspace }}
 
 runs:
   using: "composite"
