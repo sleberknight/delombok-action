@@ -1,29 +1,27 @@
 #!/usr/bin/env bash
 
-
-if [ -z "$1" ]; then
-  src_dir='src'
-else
-  src_dir="$1"
-fi
-echo "Using source directory: ${src_dir}"
-
-
 # Trap all the errors and exit on undefined variable references
 set -eu
+
+# Get input
+if [ -z "$1" ]; then
+  base_dir='.'
+else
+  base_dir="$1"
+fi
+
+src_dir="${base_dir}/src"
+echo "Using base directory: ${base_dir}"
+echo "Using source directory: ${src_dir}"
 
 
 # Get current directory (see https://stackoverflow.com/a/246128)
 here=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-echo "You are here: ${here}"
+echo "Script directory: ${here}"
 
 
-# Require first arg as the source directory
-# if [ ! -d "$src_dir" ]; then
-#   echo "Given path [${src_dir}] is not a directory!"
-#   exit 1
-# fi
-# echo "Using source directory: ${src_dir}"
+# Go to the base project directory
+pushd "$base_dir"
 
 
 # Do we need to delombok anything?
