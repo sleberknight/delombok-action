@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-# Trap all the errors and exit on undefined variable references
-set -eu
-
-
 # Get input
 if [ -z "$1" ]; then
   base_dir='.'
 else
   base_dir="$1"
 fi
+
+
+# Trap all the errors and exit on undefined variable references
+set -eu
 
 
 # Set source directory
