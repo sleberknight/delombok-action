@@ -3,6 +3,7 @@
 # Trap all the errors and exit on undefined variable references
 set -eu
 
+
 # Get input
 if [ -z "$1" ]; then
   base_dir='.'
@@ -10,6 +11,8 @@ else
   base_dir="$1"
 fi
 
+
+# Set source directory
 src_dir="${base_dir}/src"
 echo "Using base directory: ${base_dir}"
 echo "Using source directory: ${src_dir}"
@@ -19,12 +22,6 @@ echo "Using source directory: ${src_dir}"
 here=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "Script directory: ${here}"
 
-
-# Go to the base project directory
-# pushd "$base_dir"
-echo "pwd: $(pwd)"
-echo "contents:"
-ls -a "$base_dir"
 
 # Do we need to delombok anything?
 set +e
