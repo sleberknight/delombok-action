@@ -11,5 +11,5 @@ runs:
   steps:
     - run: |
         echo "Action path: ${{ github.action_path }}"
-        echo "Input directory: "${{ inputs.directory }}"
+        echo "Input directory: ${{ inputs.directory }}"
       shell: bash
