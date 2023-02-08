@@ -15,7 +15,9 @@ runs:
   steps:
     - run: |
         echo "Action path: ${{ github.action_path }}"
-        echo "Input directory: ${{ inputs.directory }}"
+        echo "Inputs:"
+        echo "  directory: ${{ inputs.directory }}"
+        echo "  sourcePath: ${{ inputs.sourcePath }}"
         echo "Start delomboking..."
         ${{ github.action_path }}/delombok.sh "${{ inputs.directory }}" "${{ inputs.sourcePath }}"
       shell: bash
