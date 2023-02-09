@@ -32,14 +32,6 @@ if [ "$git_grep_result" != "0" ]; then
 fi
 
 
-# TEMPORARY:
-echo "Are there any Lombok Jars in /tmp?"
-set +e
-ls -l "lombok*.jar"
-echo "What's in /tmp?"
-ls -l /tmp
-set -e
-
 # Download Lombok Jar
 lombokjar=$(mktemp --suffix=.jar --tmpdir lombok-XXXXXXXXXX)
 curl --silent "https://projectlombok.org/downloads/lombok.jar" -o "$lombokjar"
