@@ -13,15 +13,12 @@ else
   src_dir="${base_dir}/${2}"
 fi
 
+echo "Using base directory: ${base_dir}"
+echo "Using source directory: ${src_dir}"
+
 
 # Trap all the errors and exit on undefined variable references
 set -eu
-
-
-# Set source directory
-src_dir="${base_dir}/src"
-echo "Using base directory: ${base_dir}"
-echo "Using source directory: ${src_dir}"
 
 
 # Get script directory (see https://stackoverflow.com/a/246128)
