@@ -34,7 +34,7 @@ fi
 
 # TEMPORARY:
 echo "Are there any Lombok Jars in /tmp?"
-find /tmp -type f -name "lombok*.jar"
+# find /tmp -type f -name "lombok*.jar"
 
 
 # Download Lombok Jar
