@@ -22,11 +22,7 @@ set -eu
 
 
 # Do we need to delombok anything?
-set +e
-git grep -q "^import lombok" '*.java'
-git_grep_result=$?
-set -e
-if [ "$git_grep_result" != "0" ]; then
+if ! git grep -q "^import lombok" '*.java'; then
   echo "No files contain Lombok, so nothing to do. Exit with success."
   exit 0
 fi
