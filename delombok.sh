@@ -21,11 +21,6 @@ echo "Using source directory: ${src_dir}"
 set -eu
 
 
-# Get script directory (see https://stackoverflow.com/a/246128)
-script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-echo "Script directory: ${script_dir}"
-
-
 # Do we need to delombok anything?
 set +e
 git grep -q "^import lombok" '*.java'
@@ -37,12 +32,15 @@ if [ "$git_grep_result" != "0" ]; then
 fi
 
 
-# Download Lombok Jar if needed
-lombokjar="${script_dir}/lombok.jar"
-if [ ! -f "$lombokjar" ]; then
-  echo "Download Lombok Jar"
-  curl --silent "https://projectlombok.org/downloads/lombok.jar" -o "$lombokjar"
-fi
+# TEMPORARY:
+echo "Are there any Lombok Jars in /tmp?"
+find /tmp -type f -name "lombok*.jar"
+
+
+# Download Lombok Jar
+lombokjar=$(mktemp --suffix=.jar --tmpdir lombok-XXXXXXXXXX)
+curl --silent "https://projectlombok.org/downloads/lombok.jar" -o "$lombokjar"
+echo "Downloaded Lombok Jar to ${lombokjar}"
 
 
 # Get the classpath (needed for @Delegate to delombok properly)
