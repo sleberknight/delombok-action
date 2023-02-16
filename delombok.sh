@@ -13,6 +13,12 @@ else
   src_dir="${base_dir}/${2}"
 fi
 
+if [ "$3" == "true" ] || [ "$3" == "t" ]; then
+  print_delombok=1
+else
+  print_delombok=0
+fi
+
 echo "Using base directory: ${base_dir}"
 echo "Using source directory: ${src_dir}"
 
@@ -88,5 +94,10 @@ find "$src_dir" -name "*.java" -type f | while read -r java_file; do
   # in the repository.
   sed -r -i 's/@Generated( |$)//g' "$java_file"
 done
+
+if [ "$print_delombok" -eq 1 ]; then
+  echo "Delomboked source files:"
+  find "${delombok_src_dir}" -type f -exec cat {} \;
+fi
 
 echo "All done"

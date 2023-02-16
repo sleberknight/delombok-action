@@ -9,6 +9,10 @@ inputs:
     description: 'Path relative to workspace directory where source files are'
     required: false
     default: src
+  printDelombokSource:
+    description: 'Whether to print the delomboked source files (true|false)'
+    required: false
+    default: false
 
 runs:
   using: "composite"
@@ -18,6 +22,7 @@ runs:
         echo "Inputs:"
         echo "  directory: ${{ inputs.directory }}"
         echo "  sourcePath: ${{ inputs.sourcePath }}"
+        echo "  printDelombokSource: ${{ inputs.printDelombokSource }}"
         echo "Start delomboking..."
-        ${{ github.action_path }}/delombok.sh "${{ inputs.directory }}" "${{ inputs.sourcePath }}"
+        ${{ github.action_path }}/delombok.sh "${{ inputs.directory }}" "${{ inputs.sourcePath }}" "${{ inputs.printDelombokSource }}"
       shell: bash
