@@ -85,3 +85,5 @@ Here is an example using all three options:
         sourcePath: code/java/src
         printDelombokSource: true
 ```
+
+Instead of using the `printDelombokSource` in this action, you can use the [print-delombok](https://github.com/sleberknight/print-delombok) action separately if you prefer keeping the delomboking separate from printing the delomboked code.
