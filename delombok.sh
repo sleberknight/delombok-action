@@ -97,7 +97,7 @@ done
 
 if [ "$print_delombok" -eq 1 ]; then
   echo "Delomboked source files:"
-  find "${delombok_src_dir}" -type f -exec cat {} \;
+  find "${delombok_src_dir}" -type f -print -exec cat -n {} \;
 fi
 
 echo "All done"
