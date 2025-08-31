@@ -1,0 +1,6 @@
+# IntelliJ project files
+.idea
+*.iml
+
+# VS Code configuration files
+.vscode
