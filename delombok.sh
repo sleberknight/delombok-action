@@ -24,7 +24,7 @@ echo "Using source directory: ${src_dir}"
 
 
 # Trap all the errors and exit on undefined variable references
-set -eu
+set -euo pipefail
 
 
 # Do we need to delombok anything?
@@ -60,6 +60,10 @@ if [ -z "$classpath" ]; then
 else
   classpath_arg="--classpath=${classpath}"
 fi
+
+delombok_log='delombok.log'
+echo "Delombok errors will be written to $delombok_log"
+
 java -jar "$lombokjar" delombok \
   --verbose \
   --onlyChanged --nocopy \
@@ -69,15 +73,36 @@ java -jar "$lombokjar" delombok \
   -f generateDelombokComment:skip \
   -f javaLangAsFQN:skip \
   "$src_dir" \
-  --target="$delombok_src_dir"
+  --target="$delombok_src_dir" 2>&1 | tee $delombok_log
+
+# Check log file for errors that indicate a problem
+
+# Check for 'error: cannot find symbol' and stop if found
+if grep -Eiq 'error: cannot find symbol' "$delombok_log"; then
+    echo "ERROR: There were 'cannot find symbol' errors during delombok."
+    echo 'Make sure all utility methods in classes annotated with @UtilityClass have the static modifier.'
+    echo 'Any @UtilityClass with methods that do not have static will cause problems when running delombok.'
+    echo 'If all utility methods in classes with @UtilityClass have static, there is some other problem.'
+    exit 1
+fi
 
 
-echo "Overwrite delomboked java files"
+# Check delombok_src_dir and stop if empty
+if ! find src-delombok -type f -name '*.java' -print -quit | grep -q .; then
+  echo "No files were delomboked, so there's nothing more to do..."
+  exit 0
+fi
+
+
+echo "Overwrite delomboked java files into $src_dir"
 cp -r ${delombok_src_dir}/* "${src_dir}"/
 
 
 # Process all the (delomboked) java files
 echo "Post-process (delomboked) java files"
+echo "  1. Replace imports of lombok.* with lombok.NonNull"
+echo "  2. Remove any remaining lombok imports (except NonNull)"
+echo "  3. Remove any @Generated annotations"
 
 find "$src_dir" -name "*.java" -type f | while read -r java_file; do
   echo "Processing: ${java_file}"
