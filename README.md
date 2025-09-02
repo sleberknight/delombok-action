@@ -20,7 +20,7 @@ In a CodeQL workflow where the project being analyzed uses Lombok, you can add t
 
     # Delombok before building code
     - name: Delombok
-      uses: sleberknight/delombok-action@v0.7.0
+      uses: sleberknight/delombok-action@v0.8.0
       
     # Now build the code
     - name: Autobuild
